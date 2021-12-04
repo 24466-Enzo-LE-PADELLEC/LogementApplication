@@ -364,6 +364,7 @@ namespace LogementApplication.Models
             }
             return ListOfUser;
         }
+
         public void DeleteLogement(List<List<User>> ListOfUser)
         {
         Retry:
@@ -395,7 +396,8 @@ namespace LogementApplication.Models
                 Console.WriteLine("Please retry");
                 goto Retry;
             }
-            seller.DeleteLogement(CurrentLog,Exist);
+            seller.MyLogements.Remove(CurrentLog);
+            AllLogements.Remove(CurrentLog);
         }
 
         public void ModifyLogement(List<List<User>> ListOfUser)
@@ -429,7 +431,79 @@ namespace LogementApplication.Models
                 Console.WriteLine("Please retry");
                 goto Retry;
             }
-            seller.ModifyLogement(CurrentLog, Exist);
+
+        NewChange:
+
+            Console.WriteLine($"\t{String.Format("{0,-15}", "Location")}\t{String.Format("{0,-15}", "Type Of Logement")}\t{String.Format("{0,-15}", "Price")}\t{String.Format("{0,-15}", "Area")}\t{String.Format("{0,-15}", "Disponibility")}");
+
+            Console.WriteLine($"\t{String.Format("{0,-15}", CurrentLog.Location)}\t{String.Format("{0,-15}", CurrentLog.TypeOfLogement)}\t{String.Format("{0,-15}", CurrentLog.Price)}\t{String.Format("{0,-15}", CurrentLog.Area)}" +
+                $"\t{String.Format("{0,-15}", CurrentLog.Disponibility)}");
+
+            Console.WriteLine("What do you want to change ?");
+            Console.WriteLine("=============================");
+            Console.WriteLine("0 - Exit");
+            Console.WriteLine("1 - Location");
+            Console.WriteLine("2 - Type Of Logement");
+            Console.WriteLine("3 - Price");
+            Console.WriteLine("4 - Area");
+            Console.WriteLine("5 - Disponibility");
+
+            string Choix = Console.ReadLine();
+
+            if (Choix == "0")
+            {
+                Console.WriteLine("Exit...");
+            }
+            else if (Choix == "1")
+            {
+                Console.WriteLine("Enter the new location");
+                string NewLocation = FirstLetterUpper(Console.ReadLine());
+                CurrentLog.Location = NewLocation;
+                goto NewChange;
+            }
+            else if (Choix == "2")
+            {
+                Console.WriteLine("Enter the new type of logement");
+                string NewTOL = FirstLetterUpper(Console.ReadLine());
+                CurrentLog.TypeOfLogement = NewTOL;
+                goto NewChange;
+            }
+            else if (Choix == "3")
+            {
+                Console.WriteLine("Enter the new price");
+                int NewPrice = SaisieNombre();
+                CurrentLog.Price = NewPrice;
+                goto NewChange;
+            }
+            else if (Choix == "4")
+            {
+                Console.WriteLine("Enter the new area");
+                int NewArea = SaisieNombre();
+                CurrentLog.Area = NewArea;
+                goto NewChange;
+            }
+            else if (Choix == "5")
+            {
+                Console.WriteLine("Are you sure to want to change the disponibility of this accomodation ? If yes enter '1'. Else enter an another number.");
+                int change = SaisieNombre();
+                if (change == 1)
+                {
+                    if (CurrentLog.Disponibility == true)
+                    {
+                        CurrentLog.Disponibility = false;
+                    }
+                    else
+                    {
+                        CurrentLog.Disponibility = true;
+                    }
+                }
+                goto NewChange;
+            }
+            else
+            {
+                Console.WriteLine("Please select a correct number");
+                goto NewChange;
+            }
         }
     }
 }

@@ -170,5 +170,7 @@ namespace LogementApplication.Models
             }
             Console.WriteLine();
         }
+
+
     }
 }
