@@ -276,7 +276,7 @@ namespace LogementApplication.Models
                         Console.WriteLine("Exit...");
                         break;
                     case 1:
-                    #region Delete Student
+                    #region Delete Customer
 
                     Retry:
 
@@ -364,22 +364,68 @@ namespace LogementApplication.Models
             }
             return ListOfUser;
         }
-        public void DeleteLogement()
+        public void DeleteLogement(List<List<User>> ListOfUser)
         {
+        Retry:
+            ShowLogements();
+            Console.WriteLine("What is the Firstname of the seller?");
+            string FirstNameCustomer = FirstLetterUpper(Console.ReadLine());
+            Console.WriteLine("What is the Lastname of the seller?");
+            string LastNameCustomer = FirstLetterUpper(Console.ReadLine());
+            Console.WriteLine("What is the ID of the seller?");
+            string ID = Console.ReadLine();
 
+            Customer ConnectedCustomer = new Customer();
+            bool Exist = false;
+
+            foreach (Customer customer in ListOfUser[0])
+            {
+                if (customer.FirstName == FirstNameCustomer && customer.LastName == LastNameCustomer && customer.ID == ID)
+                {
+                    ConnectedCustomer = customer;
+                    Exist = true;
+                }
+            }
+
+            if (Exist == false)
+            {
+                Console.WriteLine("No user found");
+                Console.WriteLine("Please retry");
+                goto Retry;
+            }
+            ConnectedCustomer.DeleteLogement(Exist);
         }
-        public void ModifyLogement()
+
+        public void ModifyLogement(List<List<User>> ListOfUser)
         {
+        Retry:
+            ShowLogements();
+            Console.WriteLine("What is the Firstname of the seller?");
+            string FirstNameCustomer = FirstLetterUpper(Console.ReadLine());
+            Console.WriteLine("What is the Lastname of the seller?");
+            string LastNameCustomer = FirstLetterUpper(Console.ReadLine());
+            Console.WriteLine("What is the ID of the seller?");
+            string ID = Console.ReadLine();
 
+            Customer ConnectedCustomer = new Customer();
+            bool Exist = false;
+
+            foreach (Customer customer in ListOfUser[0])
+            {
+                if (customer.FirstName == FirstNameCustomer && customer.LastName == LastNameCustomer && customer.ID == ID)
+                {
+                    ConnectedCustomer = customer;
+                    Exist = true;
+                }
+            }
+
+            if (Exist == false)
+            {
+                Console.WriteLine("No user found");
+                Console.WriteLine("Please retry");
+                goto Retry;
+            }
+            ConnectedCustomer.ModifyLogement(Exist);
         }
-        public void AddMoney(List<List<User>> ListOfUser)
-        {
-
-        }
-        public void WithdrawMoney(List<List<User>> ListOfUser)
-        {
-
-        }
-
     }
 }

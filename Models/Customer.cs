@@ -46,17 +46,23 @@ namespace LogementApplication.Models
             AllLogements.Add(L1);
             Customers.Add(CurrentCustomer);
         }
-        public void DeleteLogement()
+        public void DeleteLogement(bool oui)
         {
 
         }
-        public void ModifyLogement()
+        public void ModifyLogement(bool oui)
         {
 
         }
         public void BuyLogement()
         {
-
+            ShowLogements();
+            Console.WriteLine("Where is the property you wish to buy located?");
+            string Location = FirstLetterUpper(Console.ReadLine());
+            Console.WriteLine("What is the size of the home you wish to purchase?");
+            int Area = SaisieNombre();
+            Console.WriteLine("What is the ID of the seller?");
+            string ID = Console.ReadLine();
         }
         public void RentLogement()
         {
@@ -70,6 +76,15 @@ namespace LogementApplication.Models
         public void WithdrawMoney()
         {
 
+        }
+        
+        public void ShowMyLogementsProposition()
+        {
+            foreach (Logement L in SalesProposal)
+            {
+                L.Display();
+            }
+            Console.WriteLine();
         }
     }
 }
