@@ -13,7 +13,7 @@ namespace LogementApplication.Models
         public string ID { get; set; }
         public string Email { get; set; }
         public List<Logement> AllLogements { get; set; }
-        public List<Customer> Customers { get; set; }
+
 
         public static string Login(List<List<User>> ListOfUser)
         {

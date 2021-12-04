@@ -157,7 +157,7 @@ namespace LogementApplication.Models
                             goto Retry;
                         }
 
-                        ConnectedCustomer.ModifyCustomer(true);
+                        ConnectedCustomer.ModifyCustomer(ConnectedCustomer, true);
 
                         Console.WriteLine();
                         #endregion
@@ -368,64 +368,68 @@ namespace LogementApplication.Models
         {
         Retry:
             ShowLogements();
-            Console.WriteLine("What is the Firstname of the seller?");
-            string FirstNameCustomer = FirstLetterUpper(Console.ReadLine());
-            Console.WriteLine("What is the Lastname of the seller?");
-            string LastNameCustomer = FirstLetterUpper(Console.ReadLine());
             Console.WriteLine("What is the ID of the seller?");
             string ID = Console.ReadLine();
+            Console.WriteLine("What is the Location of the accommodation?");
+            string Location = Console.ReadLine();
+            Console.WriteLine("What is the size of the accommodation?");
+            int Area = SaisieNombre();
 
-            Customer ConnectedCustomer = new Customer();
+            Customer seller = new Customer();
+            Logement CurrentLog = new Logement();
             bool Exist = false;
 
-            foreach (Customer customer in ListOfUser[0])
+            foreach (Logement logement in AllLogements)
             {
-                if (customer.FirstName == FirstNameCustomer && customer.LastName == LastNameCustomer && customer.ID == ID)
+                if (logement.Seller.ID == ID && logement.Location == Location && logement.Area == Area)
                 {
-                    ConnectedCustomer = customer;
+                    CurrentLog = logement;
+                    seller = logement.Seller;
                     Exist = true;
                 }
             }
 
             if (Exist == false)
             {
-                Console.WriteLine("No user found");
+                Console.WriteLine("No logement found");
                 Console.WriteLine("Please retry");
                 goto Retry;
             }
-            ConnectedCustomer.DeleteLogement(Exist);
+            seller.DeleteLogement(CurrentLog,Exist);
         }
 
         public void ModifyLogement(List<List<User>> ListOfUser)
         {
         Retry:
             ShowLogements();
-            Console.WriteLine("What is the Firstname of the seller?");
-            string FirstNameCustomer = FirstLetterUpper(Console.ReadLine());
-            Console.WriteLine("What is the Lastname of the seller?");
-            string LastNameCustomer = FirstLetterUpper(Console.ReadLine());
             Console.WriteLine("What is the ID of the seller?");
             string ID = Console.ReadLine();
+            Console.WriteLine("What is the Location of the accommodation?");
+            string Location = Console.ReadLine();
+            Console.WriteLine("What is the size of the accommodation?");
+            int Area = SaisieNombre();
 
-            Customer ConnectedCustomer = new Customer();
+            Customer seller = new Customer();
+            Logement CurrentLog = new Logement();
             bool Exist = false;
 
-            foreach (Customer customer in ListOfUser[0])
+            foreach (Logement logement in AllLogements)
             {
-                if (customer.FirstName == FirstNameCustomer && customer.LastName == LastNameCustomer && customer.ID == ID)
+                if (logement.Seller.ID == ID && logement.Location == Location && logement.Area == Area)
                 {
-                    ConnectedCustomer = customer;
+                    CurrentLog = logement;
+                    seller = logement.Seller;
                     Exist = true;
                 }
             }
 
             if (Exist == false)
             {
-                Console.WriteLine("No user found");
+                Console.WriteLine("No logement found");
                 Console.WriteLine("Please retry");
                 goto Retry;
             }
-            ConnectedCustomer.ModifyLogement(Exist);
+            seller.ModifyLogement(CurrentLog, Exist);
         }
     }
 }

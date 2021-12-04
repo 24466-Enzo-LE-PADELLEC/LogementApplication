@@ -10,7 +10,6 @@ namespace LogementApplication.Models
     {
         public string Location { get; set; }
         public string TypeOfLogement { get; set; }
-        public string SellorRend { get; set; }
         public int Price { get; set; }
         public int Area { get; set; }
         public bool Disponibility { get; set; }
