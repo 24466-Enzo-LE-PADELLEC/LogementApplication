@@ -15,7 +15,11 @@ namespace LogementApplication.Models
         public List<Logement> MyLogements { get; set; }
         public List<Logement> AllLogements { get; set; }
 
-
+        /// <summary>
+        /// Determine the ID of the user who is logining 
+        /// </summary>
+        /// <param name="ListOfUser">List of List of User.</param>
+        /// <returns>Return the ID of the User (string)</returns>
         public static string Login(List<List<User>> ListOfUser)
         {
             string IDUser;
@@ -76,6 +80,15 @@ namespace LogementApplication.Models
             string Word = (char.ToUpper(mot[0]) + mot.Substring(1));
             return Word;
         }
+
+        /// <summary>
+        /// tries to find out if a user exists or not
+        /// </summary>
+        /// <param name="id">Id searched</param>
+        /// <param name="firstname">First Name searched</param>
+        /// <param name="lastname">Last Name searched</param>
+        /// <param name="ListOfUser">List of List of User</param>
+        /// <returns></returns>
         public static bool SearchID(string id, string firstname, string lastname, List<List<User>> ListOfUser)
         {
             bool Exist = false;
@@ -164,6 +177,10 @@ namespace LogementApplication.Models
 
             NewUser.ID = PIN;
         }
+
+        /// <summary>
+        /// Show all the logements which are on the application       
+        /// /// </summary>
         public void ShowLogements()
         {
             foreach (Logement L in AllLogements)
@@ -173,6 +190,10 @@ namespace LogementApplication.Models
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Initializes the list containing all the apartments, regardless of the user
+        /// </summary>
+        /// <param name="ListOfUser">List of User</param>
         public void AllLoggements(List<User> ListOfUser)
         {
             AllLogements = new List<Logement> { };

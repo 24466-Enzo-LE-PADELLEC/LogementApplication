@@ -9,6 +9,10 @@ namespace LogementApplication
 {
     class Program
     {
+        /// <summary>
+        /// Launches the application
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             List<List<User>> ListOfUser = CreationListOfUser();
@@ -59,6 +63,11 @@ namespace LogementApplication
             Console.ReadKey();
             #endregion  
         }
+
+        /// <summary>
+        /// allow to obtain an integer when we need to have one
+        /// </summary>
+        /// <returns>an integer.</returns>
         public static int SaisirNbre()
         {
             int n = 0;
@@ -73,6 +82,12 @@ namespace LogementApplication
 
             return n;
         }
+
+        /// <summary>
+        /// Menu of the application when you are a customer
+        /// </summary>
+        /// <param name="ID">ID of the customer, usefull to find the customer among the all customers</param>
+        /// <param name="ListOfCustomer">List of the customers</param>
         public static void CustomertMenu(string ID, List<User> ListOfCustomer)
         {
             Customer ConnectedCustomer = new Customer() { FirstName = "Bernard le calamard" };
@@ -251,6 +266,11 @@ namespace LogementApplication
                 }
             }
         }
+
+        /// <summary>
+        /// Useful to initialize the application
+        /// </summary>
+        /// <returns>List of List of User.</returns>
         public static List<List<User>> CreationListOfUser()
         {
             List<List<User>> ListOfUser = new List<List<User>>();

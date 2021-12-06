@@ -8,6 +8,10 @@ namespace LogementApplication.Models
 {
     class Administrator : User
     {
+        /// <summary>
+        /// Allow to create a user (admin or customer)
+        /// </summary>
+        /// <param name="ListOfUser">List of List of User.</param>
         public void CreateUser(List<List<User>> ListOfUser)
         {
             int Choice = 100;
@@ -84,6 +88,12 @@ namespace LogementApplication.Models
             }
             //return ListOfUser;
         }
+
+        /// <summary>
+        /// Allow to show all the users
+        /// </summary>
+        /// <param name="ListOfUser">List of List of User.</param>
+        /// <param name="TypeOfUser">Type of user (admin or customer)</param>
         public void ShowUsers(List<List<User>> ListOfUser, int TypeOfUser)
         {
             Console.WriteLine($"\t{String.Format("{0,-15}", "ID")}\t{String.Format("{0,-15}", "First Name")}\t{String.Format("{0,-15}", "Last Name")}\t{String.Format("{0,-15}", "Email")}");
@@ -106,6 +116,11 @@ namespace LogementApplication.Models
                 }
             }
         }
+
+        /// <summary>
+        /// Allow to modify a user.
+        /// </summary>
+        /// <param name="ListOfUser">List of List of User.</param>
         public void ModifyUser(List<List<User>> ListOfUser)
         {
             int Choice = 100;
@@ -255,7 +270,12 @@ namespace LogementApplication.Models
             }
             //return ListOfUser;
         }
-    
+
+        /// <summary>
+        /// Allow to delete a user
+        /// </summary>
+        /// <param name="ListOfUser">List of List of User.</param>
+        /// <returns></returns>
         public List<List<User>> DeleteUser(List<List<User>> ListOfUser)
         {
             int Choice = 100;
@@ -367,6 +387,9 @@ namespace LogementApplication.Models
             return ListOfUser;
         }
 
+        /// <summary>
+        /// Allow to delete a logement
+        /// </summary>
         public void DeleteLogement()
         {
             if (AllLogements != null || AllLogements.Count != 0)
@@ -409,6 +432,9 @@ namespace LogementApplication.Models
             }
         }
 
+        /// <summary>
+        /// Allow to modify a logement
+        /// </summary>
         public void ModifyLogement()
         {
             if (AllLogements != null || AllLogements.Count != 0)

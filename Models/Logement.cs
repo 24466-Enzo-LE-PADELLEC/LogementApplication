@@ -15,6 +15,9 @@ namespace LogementApplication.Models
         public bool Disponibility { get; set; }
         public Customer Seller { get; set; }
 
+        /// <summary>
+        /// Allow to display the characteristics of a logement
+        /// </summary>
         public void Display()
         {
             Console.WriteLine("Informations about the Logement :");

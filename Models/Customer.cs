@@ -11,6 +11,12 @@ namespace LogementApplication.Models
         public int Money { get; set; }
         public string Phone { get; set; }
         public List<string> Transactions { get; set; }
+
+        /// <summary>
+        /// Allow to modify the profile of the current customer
+        /// </summary>
+        /// <param name="ConnectedCustomer">It's the connected customer</param>
+        /// <param name="ModifAdmin">It allow to know if it's an admin or the customer who modifies the profile</param>
         public void ModifyCustomer(Customer ConnectedCustomer, bool ModifAdmin)
         {
             bool ChangeID = false;
@@ -95,7 +101,10 @@ namespace LogementApplication.Models
             }
         }
 
-
+        /// <summary>
+        /// Allow to add a logement on the application
+        /// </summary>
+        /// <param name="CurrentCustomer">It's the connected customer</param>
         public void AddLogement(Customer CurrentCustomer)
         {
 
@@ -129,6 +138,9 @@ namespace LogementApplication.Models
             AllLogements.Add(L1);
         }
 
+        /// <summary>
+        /// Allow the customer to delete one of his logement from the application
+        /// </summary>
         public void DeleteLogement()
         {
             if (MyLogements != null || MyLogements.Count != 0)
@@ -171,6 +183,9 @@ namespace LogementApplication.Models
             }
         }
 
+        /// <summary>
+        /// Allow the customer to modify one of his logement from the application
+        /// </summary>
         public void ModifyLogement()
         {
             if (MyLogements != null || MyLogements.Count != 0)
@@ -284,6 +299,10 @@ namespace LogementApplication.Models
             }
         }
 
+        /// <summary>
+        /// Allow the use to buy a logement on the application
+        /// </summary>
+        /// <param name="ConnectedCustomer">It's the connected customer</param>
         public void BuyLogement(Customer ConnectedCustomer)
         {
         Retry:
@@ -407,6 +426,9 @@ namespace LogementApplication.Models
         //    }
         //}
 
+        /// <summary>
+        /// Allow the customer to add money on the application
+        /// </summary>
         public void AddMoney()
         {
             Console.WriteLine("How much money would you like to add to your account?");
@@ -415,6 +437,10 @@ namespace LogementApplication.Models
             Console.WriteLine("Money Added succesfully.");
             Console.WriteLine($"You currently have {Money} on your account");
         }
+
+        /// <summary>
+        /// llow the customer to withdraw money from the application
+        /// </summary>
         public void WithdrawMoney()
         {
         Retry:
@@ -434,6 +460,9 @@ namespace LogementApplication.Models
             }
         }
 
+        /// <summary>
+        /// Allow the customer to see all of his logements
+        /// </summary>
         public void ShowMyLogements()
         {
             foreach (Logement L in MyLogements)
@@ -443,6 +472,9 @@ namespace LogementApplication.Models
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Allow the customer to see his profile
+        /// </summary>
         public void ShowProfile()
         {
             Console.WriteLine($"\t{String.Format("{0,-15}", "ID")}\t{String.Format("{0,-15}", "First Name")}\t{String.Format("{0,-15}", "Last Name")}\t{String.Format("{0,-15}", "Email")}\t{String.Format("{0,-15}", "Phone")}\t{String.Format("{0,-15}", "Money")}");
@@ -452,6 +484,9 @@ namespace LogementApplication.Models
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Allow the customer to see his Transactons
+        /// </summary>
         public void ShowMyTransactions()
         {
             Console.WriteLine("YOUR TRANSACTIONS");
