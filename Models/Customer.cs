@@ -11,7 +11,6 @@ namespace LogementApplication.Models
         public int Money { get; set; }
         public string Phone { get; set; }
         public List<string> Transactions { get; set; }
-        public List<Logement> MyLogements { get; set; }
         public void ModifyCustomer(Customer ConnectedCustomer, bool ModifAdmin)
         {
             bool ChangeID = false;
@@ -130,7 +129,7 @@ namespace LogementApplication.Models
             AllLogements.Add(L1);
         }
 
-        public void DeleteLogement(List<List<User>> ListOfUser)
+        public void DeleteLogement()
         {
         Retry:
             ShowLogements();
@@ -165,14 +164,14 @@ namespace LogementApplication.Models
             AllLogements.Remove(CurrentLog);
         }
 
-        public void ModifyLogement(List<List<User>> ListOfUser)
+        public void ModifyLogement()
         {
         Retry:
             ShowLogements();
             Console.WriteLine("What is the ID of the seller?");
             string ID = Console.ReadLine();
             Console.WriteLine("What is the Location of the accommodation?");
-            string Location = Console.ReadLine();
+            string Location = FirstLetterUpper(Console.ReadLine());
             Console.WriteLine("What is the size of the accommodation?");
             int Area = SaisieNombre();
 
@@ -199,7 +198,7 @@ namespace LogementApplication.Models
 
         NewChange:
 
-            Console.WriteLine($"\t{String.Format("{0,-15}", "Location")}\t{String.Format("{0,-15}", "Type Of Logement")}\t{String.Format("{0,-15}", "Price")}\t{String.Format("{0,-15}", "Area")}\t{String.Format("{0,-15}", "Disponibility")}");
+            Console.WriteLine($"\t{String.Format("{0,-15}", "Location")}\t{String.Format("{0,-15}", "Type Of Logement")}\t{String.Format("{0,-20}", "Price")}\t{String.Format("{0,-15}", "Area")}\t{String.Format("{0,-15}", "Disponibility")}");
 
             Console.WriteLine($"\t{String.Format("{0,-15}", CurrentLog.Location)}\t{String.Format("{0,-15}", CurrentLog.TypeOfLogement)}\t{String.Format("{0,-15}", CurrentLog.Price)}\t{String.Format("{0,-15}", CurrentLog.Area)}" +
                 $"\t{String.Format("{0,-15}", CurrentLog.Disponibility)}");
@@ -270,7 +269,7 @@ namespace LogementApplication.Models
                 goto NewChange;
             }
         }
-        public void BuyLogement()
+        public void BuyLogement(Customer ConnectedCustomer)
         {
         Retry:
             ShowLogements();
@@ -313,6 +312,8 @@ namespace LogementApplication.Models
                 CurrentLog.Disponibility = false;
                 CurrentLog.Seller.MyLogements.Remove(CurrentLog);
                 MyLogements.Add(CurrentLog);
+                CurrentLog.Seller = ConnectedCustomer;
+                Console.WriteLine("Congrats for your purchase.");
             }
         }
         public void ChangeStateOfLogement(int entier) //uselles but exists
@@ -388,6 +389,7 @@ namespace LogementApplication.Models
             int Add = SaisieNombre();
             Money += Add;
             Console.WriteLine("Money Added succesfully.");
+            Console.WriteLine($"You actually have {Money} on your account");
         }
         public void WithdrawMoney()
         {
@@ -398,10 +400,11 @@ namespace LogementApplication.Models
             {
                 Money -= Withdraw;
                 Console.WriteLine("Withdrawal successfully completed.");
+                Console.WriteLine($"You actually have {Money} on your account");
             }
             else
             {
-                Console.WriteLine($"You don't have enough money on your account. Currently you harve {Money} euros on your account.");
+                Console.WriteLine($"You don't have enough money on your account. Currently you have {Money} euros on your account.");
                 Console.WriteLine("Please retry");
                 goto Retry;
             }
@@ -414,6 +417,22 @@ namespace LogementApplication.Models
                 L.Display();
             }
             Console.WriteLine();
+        }
+
+        public void ShowProfile()
+        {
+
+        }
+
+        public void ShowMyTransactions()
+        {
+            Console.WriteLine("YOUR TRANSACTIONS");
+            Console.WriteLine();
+
+            foreach(string transaction in Transactions)
+            {
+                Console.WriteLine(transaction);
+            }
         }
     }
 }

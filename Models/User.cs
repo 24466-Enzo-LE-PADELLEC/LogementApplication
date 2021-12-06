@@ -12,6 +12,7 @@ namespace LogementApplication.Models
         public string LastName { get; set; }
         public string ID { get; set; }
         public string Email { get; set; }
+        public List<Logement> MyLogements { get; set; }
         public List<Logement> AllLogements { get; set; }
 
 
@@ -60,6 +61,7 @@ namespace LogementApplication.Models
                     goto Retry2;
                 }
             }
+
             return IDUser;
         }
 
@@ -113,7 +115,7 @@ namespace LogementApplication.Models
             {
                 parse = int.TryParse(Console.ReadLine(), out n);
             }
-            while (parse == false || n <= 0);
+            while (parse == false || n < 0);
 
             return n;
         }
@@ -169,6 +171,18 @@ namespace LogementApplication.Models
                 L.Display();
             }
             Console.WriteLine();
+        }
+
+        public void AllLoggements(List<User> ListOfUser)
+        {
+            AllLogements = new List<Logement> { };
+            foreach(Customer customer in ListOfUser)
+            {
+                foreach(Logement log in customer.MyLogements)
+                {
+                    AllLogements.Add(log);
+                }
+            }
         }
 
 

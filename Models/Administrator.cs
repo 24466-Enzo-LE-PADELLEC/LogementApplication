@@ -47,7 +47,7 @@ namespace LogementApplication.Models
                         Console.WriteLine("Money ?");
                         int MoneyCustomer = SaisieNombre();
 
-                        Customer customer = new Customer() { FirstName = FirstNameCustomer, LastName = LastNameCustomer, Email = EmailCustomer, Phone = PhoneNumberCustomer, Money = MoneyCustomer };
+                        Customer customer = new Customer() { FirstName = FirstNameCustomer, LastName = LastNameCustomer, Email = EmailCustomer, Phone = PhoneNumberCustomer, Money = MoneyCustomer, Transactions = new List<string> { }, MyLogements = new List<Logement> { }, AllLogements = new List<Logement> { } };
                         CreatePIN(customer, 0);
 
                         ListOfUser[0].Add(customer);
@@ -68,7 +68,7 @@ namespace LogementApplication.Models
                         Console.WriteLine("Email ?");
                         string EmailAdmin = Console.ReadLine().ToLower();
 
-                        Administrator administrator = new Administrator() { FirstName = FirstNameAdmin, LastName = LastNameAdmin, Email = EmailAdmin };
+                        Administrator administrator = new Administrator() { FirstName = FirstNameAdmin, LastName = LastNameAdmin, Email = EmailAdmin, AllLogements = new List<Logement> { } };
                         CreatePIN(administrator, 2);
                         ListOfUser[2].Add(administrator);
                         Console.WriteLine("Administrator added");
@@ -250,6 +250,7 @@ namespace LogementApplication.Models
                         Console.WriteLine("This number is not affected");
                         Console.WriteLine("Please choose between indicated ones");
                         break;
+
                 }
             }
             //return ListOfUser;
@@ -265,7 +266,7 @@ namespace LogementApplication.Models
                 Console.WriteLine();
                 Console.WriteLine("0 - Exit");
                 Console.WriteLine();
-                Console.WriteLine("1 - Delete Student");
+                Console.WriteLine("1 - Delete Customer");
                 Console.WriteLine();
                 Console.WriteLine("2 - Delete Administrator");
                 Console.WriteLine();
@@ -360,12 +361,13 @@ namespace LogementApplication.Models
                         Console.WriteLine("This number is not affected");
                         Console.WriteLine("Please choose between indicated ones");
                         break;
+
                 }
             }
             return ListOfUser;
         }
 
-        public void DeleteLogement(List<List<User>> ListOfUser)
+        public void DeleteLogement()
         {
         Retry:
             ShowLogements();
@@ -400,7 +402,7 @@ namespace LogementApplication.Models
             AllLogements.Remove(CurrentLog);
         }
 
-        public void ModifyLogement(List<List<User>> ListOfUser)
+        public void ModifyLogement()
         {
         Retry:
             ShowLogements();
