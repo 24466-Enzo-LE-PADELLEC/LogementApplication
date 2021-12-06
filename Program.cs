@@ -112,9 +112,11 @@ namespace LogementApplication
                 Console.WriteLine();
                 Console.WriteLine("8 - Buy a logement");
                 Console.WriteLine();
-                Console.WriteLine("9 - Profile");
+                Console.WriteLine("9 - See my Transactions");
                 Console.WriteLine();
-                Console.WriteLine("10 - Modify my profile");
+                Console.WriteLine("10 - Profile");
+                Console.WriteLine();
+                Console.WriteLine("11 - Modify my profile");
                 Console.WriteLine();
                 Choice = SaisirNbre();
 
@@ -155,11 +157,15 @@ namespace LogementApplication
                         ConnectedCustomer.BuyLogement(ConnectedCustomer);
                         Console.WriteLine();
                         break;
-                    case 9 :
+                    case 9:
+                        ConnectedCustomer.ShowMyTransactions();
+                        Console.WriteLine();
+                        break;
+                    case 10 :
                         ConnectedCustomer.ShowProfile();
                         Console.WriteLine();
                         break;
-                    case 10:
+                    case 11:
                         ConnectedCustomer.ModifyCustomer(ConnectedCustomer, false);
                         Console.WriteLine();
                         break;
