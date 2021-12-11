@@ -7,6 +7,7 @@ using LogementApplication.Models;
 
 namespace LogementApplication
 {
+    //LE PADELLEC Enzo 24466
     class Program
     {
         /// <summary>
@@ -43,6 +44,7 @@ namespace LogementApplication
                 {
                     case 0:
                         Console.WriteLine("Closing program.cs");
+                        goto End;
                         break;
                     case 1:
                         CustomertMenu(IDConnectedUser, ListOfUser[0]);
@@ -60,6 +62,7 @@ namespace LogementApplication
 
                 }
             }
+        End:
             Console.ReadKey();
             #endregion  
         }

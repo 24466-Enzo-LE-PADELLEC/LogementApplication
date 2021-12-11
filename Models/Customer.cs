@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace LogementApplication.Models
 {
+    //LE PADELLEC Enzo 24466
     class Customer : User
     {
         public int Money { get; set; }
